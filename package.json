@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "aec2021-reactapp-base",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
