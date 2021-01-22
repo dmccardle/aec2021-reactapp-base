@@ -7,7 +7,7 @@ function App() {
   const [data, setData] = useState('')
 
   const fetchData = async () => {
-    const res = await fetch('http://localhost:5000')
+    const res = await fetch('https://aec2021-restapi-test.herokuapp.com/')
     const newData = await res.json()
 
     setData(newData)
