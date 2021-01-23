@@ -3,7 +3,7 @@ import { TextField, MenuItem, Switch, Button, Slider } from '@material-ui/core'
 import { Input, InputAdornment, InputLabel, FormControl } from '@material-ui/core'
 import { Grid, Typography } from '@material-ui/core'
 
-const UserForm = () => {
+const UserForm = ({ setData }) => {
   const [province, setProvince] = useState('')
   const [priceRange, setPriceRange] = useState([10000,50000])
   const [kmPerYear, setKmPerYear] = useState(0)
@@ -74,7 +74,8 @@ const UserForm = () => {
     return `$${Math.floor(value / 1000)}k`;
   }
 
-  function handleSubmit() {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     let formMap = new Map()
     formMap['province'] = province
     formMap['priceRange'] = priceRange
@@ -88,11 +89,14 @@ const UserForm = () => {
       body: JSON.stringify(formMap)
     }
 
-    console.log(requestOptions)
+    // fetch('https://localhost:5000/outputs', requestOptions)
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ postId: data.id }));
 
-    fetch('https://localhost:5000/outputs', requestOptions)
-      .then(response => response.json())
-      .then(data => this.setState({ postId: data.id }));
+    const res = await fetch('http://localhost:5000/output', requestOptions)
+    const data = res.json()
+
+    setData(data)
   }
 
   return (
@@ -102,7 +106,7 @@ const UserForm = () => {
       justifyContent: 'center',
     }}>
       <form style={{width: 400}}>
-        <FormControl fullWidth='true'>
+        <FormControl fullWidth={true}>
           <TextField label='Province' select value={province} onChange={(e) => (setProvince(e.target.value))} >
             {provinces.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -112,7 +116,7 @@ const UserForm = () => {
           </TextField>
         </FormControl>
 
-        <FormControl fullWidth='true'>
+        <FormControl fullWidth={true}>
           <Typography id="range-slider" gutterBottom>
             Price Range
           </Typography>
@@ -126,7 +130,7 @@ const UserForm = () => {
           />
         </FormControl>
         
-        <FormControl fullWidth='true'>
+        <FormControl fullWidth={true}>
           <InputLabel>How much do you drive?</InputLabel>
           <Input
             value={kmPerYear}
@@ -139,7 +143,7 @@ const UserForm = () => {
           />
         </FormControl>
         
-        <FormControl fullWidth='true'>
+        <FormControl fullWidth={true}>
           <InputLabel>Preferred number of seats</InputLabel>
           <Input
             value={prefNumberOfSeats}
@@ -163,7 +167,7 @@ const UserForm = () => {
           </Grid>
         </FormControl>
 
-        <Button fullWidth='true' variant='outlined' color='primary' onClick={handleSubmit}>
+        <Button fullWidth={true} variant='outlined' color='primary' onClick={handleSubmit}>
           Submit
         </Button>
       </form>
