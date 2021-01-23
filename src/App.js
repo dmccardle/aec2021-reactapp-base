@@ -1,7 +1,10 @@
 import './App.css';
 import Button from '@material-ui/core/Button';
-import UserForm from './components/UserForm'
-import { useState } from 'react'
+import UserForm from './components/UserForm';
+import { useState } from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import CarResult from './components/CarResult';
+import Header from './components/Header'
 
 function App() {
   const [data, setData] = useState('')
@@ -14,9 +17,13 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <UserForm/>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Route path='/' exact component={UserForm} />
+        <Route path='results' component={CarResult} />
+      </div>
+    </Router>
   );
 }
 

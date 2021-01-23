@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { TextField, MenuItem, Slider } from '@material-ui/core'
-import Typography from '@material-ui/core/Typography';
+import { FormControl, Input, InputAdornment, InputLabel } from '@material-ui/core'
+
 import RangeSlider from './RangeSlider'
 
 const UserForm = () => {
   const [province, setProvince] = useState('')
   const [priceRange, setPriceRange] = useState([10000,50000])
-  const [mileage, setMileage] = useState(false)
+  const [kmPerYear, setKmPerYear] = useState(0)
   const [minNumberOfSeats, setMinNumberOfSeats] = useState(5)
   const [climate, setClimate] = useState('warm')
 
@@ -69,15 +70,32 @@ const UserForm = () => {
   return (
     <div>
       <form>
-        <TextField label='Province' select value={province} onChange={(e) => (setProvince(e.target.value))} >
-          {provinces.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <RangeSlider />
+        <FormControl>
+          <TextField label='Province' select value={province} onChange={(e) => (setProvince(e.target.value))} >
+            {provinces.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </FormControl>
+        <FormControl>
+          <RangeSlider />
+        </FormControl>
+        <FormControl>
+          <InputLabel>How much do you drive?</InputLabel>
+          <Input
+            value={kmPerYear}
+            onChange={(e) => (setKmPerYear(e.target.value))}
+            endAdornment={<InputAdornment position="end">km/year</InputAdornment>}
+            inputProps={{
+              'aria-label': 'KM per Year',
+            }}
+            type="number"
+          />
+        </FormControl>
 
+          
       </form>
     </div>
   )
