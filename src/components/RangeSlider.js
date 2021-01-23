@@ -1,17 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
-const useStyles = makeStyles({
-  root: {
-    margin: '0 auto',
-    width: 300,
-  },
-});
 
 export default function RangeSlider() {
-  const classes = useStyles();
   const [value, setValue] = React.useState([10000, 50000]);
 
   const handleChange = (event, newValue) => {
@@ -23,7 +15,7 @@ export default function RangeSlider() {
   }
 
   return (
-    <div className={classes.root}>
+    <div>
       <Typography id="range-slider" gutterBottom>
         Price Range
       </Typography>
