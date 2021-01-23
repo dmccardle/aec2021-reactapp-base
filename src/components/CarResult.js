@@ -2,6 +2,8 @@ import { Grid }  from '@material-ui/core';
 import CarDetail from './CarDetail';
 import PropTypes from 'prop-types';
 import PriceGraph from './PriceGraph';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom'
 
 
 const CarResult = ({ data }) => {
@@ -38,6 +40,9 @@ const CarResult = ({ data }) => {
       </Grid>
       <Grid item sm={6} style={{margin: '0 auto'}}>
         <PriceGraph props={testdata} />
+      </Grid>
+      <Grid sm={12}>
+        <Button variant="contained"><Link to="/">Recalculate</Link></Button>
       </Grid>
     </Grid>
   )
