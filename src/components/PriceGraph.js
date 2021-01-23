@@ -1,12 +1,8 @@
 import Paper from '@material-ui/core/Paper';
-
 import { ArgumentAxis, ValueAxis, Chart, LineSeries, Title, Legend } from '@devexpress/dx-react-chart-material-ui';
-import { ArgumentScale } from '@devexpress/dx-react-chart';
-import { scaleBand } from '@devexpress/dx-chart-core';
 
 
 const PriceGraph = ({ props }) => {
-  // [ { car 1 }, { car 2} ] 
   const car1 = props[0]
   const car2 = props[1]
 
@@ -30,19 +26,6 @@ const PriceGraph = ({ props }) => {
     { argument: 3, car1: car1.basePrice + calculateSumOfYears(3, car1), car2: car2.basePrice + calculateSumOfYears(3, car2) },
     { argument: 4, car1: car1.basePrice + calculateSumOfYears(4, car1), car2: car2.basePrice + calculateSumOfYears(4, car2) },
     { argument: 5, car1: car1.basePrice + calculateSumOfYears(5, car1), car2: car2.basePrice + calculateSumOfYears(5, car2) }
-
-
-
-    // { argument: 2, value: props.basePrice + props.costOver5Years[0] 
-    //   + props.costOver5Years[1] },
-    // { argument: 3, value: props.basePrice + props.costOver5Years[0] 
-    //   + props.costOver5Years[1] + props.costOver5Years[2] },
-    // { argument: 4, value: props.basePrice + props.costOver5Years[0] 
-    //   + props.costOver5Years[1] + props.costOver5Years[2] 
-    //   + props.costOver5Years[3] },
-    // { argument: 5, value: props.basePrice + props.costOver5Years[0] 
-    //   + props.costOver5Years[1] + props.costOver5Years[2] 
-    //   + props.costOver5Years[3]+ props.costOver5Years[4] },
   ]
 
   return (

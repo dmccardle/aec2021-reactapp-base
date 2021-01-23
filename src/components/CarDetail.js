@@ -17,6 +17,9 @@ const CarDetail = ({ props }) => {
       <Typography variant="h6">
         Number of seats: {props.numberOfSeats}
       </Typography>
+      <Typography variant="h6" style={{color: props.emissions === 0 ? 'green' : 'red'}}>
+        Carbon emissions: {props.emissions}
+      </Typography>
     </div>
   )
 }

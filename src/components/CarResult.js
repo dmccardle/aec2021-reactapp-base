@@ -13,7 +13,7 @@ const CarResult = ({ data }) => {
       name: "Honda Civic",
       basePrice: 20000,
       costOver5Years: [100, 100, 100, 100, 100],
-      emissions: "100",
+      emissions: 0,
       numberOfSeats: 5,
     },
     {
@@ -29,14 +29,14 @@ const CarResult = ({ data }) => {
   ]
 
   return (
-    <Grid container>
+    <Grid container alignContent="center">
       <Grid item xs={12} sm={6}>
         <CarDetail props={testdata[0]} />
       </Grid>
       <Grid item xs={12} sm={6}>
         <CarDetail props={testdata[1]}/>
       </Grid>
-      <Grid item sm={12}>
+      <Grid item sm={6} style={{margin: '0 auto'}}>
         <PriceGraph props={testdata} />
       </Grid>
     </Grid>
