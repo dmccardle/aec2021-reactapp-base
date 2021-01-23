@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { TextField, MenuItem, Switch, Button, Slider } from '@material-ui/core'
 import { Input, InputAdornment, InputLabel, FormControl } from '@material-ui/core'
 import { Grid, Typography } from '@material-ui/core'
+import { useHistory } from "react-router-dom";
+
 
 const UserForm = ({ setData }) => {
   const [province, setProvince] = useState('')
@@ -10,6 +12,7 @@ const UserForm = ({ setData }) => {
   const [prefNumberOfSeats, setPrefNumberOfSeats] = useState(5)
   const [checked, setChecked] = useState(true)
 
+  const history = useHistory();
 
   const provinces = [
     {
@@ -76,6 +79,12 @@ const UserForm = ({ setData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if (province === '') {
+      alert('Missing required fields')
+      return
+    }
+
     let formMap = new Map()
     formMap['province'] = province
     formMap['priceRange'] = priceRange
@@ -94,9 +103,10 @@ const UserForm = ({ setData }) => {
     //   .then(data => this.setState({ postId: data.id }));
 
     const res = await fetch('http://localhost:5000/output', requestOptions)
-    const data = res.json()
+    const data = await res.json()
+    await setData(data)
 
-    setData(data)
+    history.push('/results')
   }
 
   return (
