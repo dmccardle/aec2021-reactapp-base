@@ -1,5 +1,6 @@
 import './App.css';
 import Button from '@material-ui/core/Button';
+import UserForm from './components/UserForm'
 import { useState } from 'react'
 
 function App() {
@@ -14,10 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      <Button variant="contained" color="primary" onClick={fetchData} >
-      Hello World
-      </Button>
-      <p>{data}</p>
+      <UserForm/>
     </div>
   );
 }
