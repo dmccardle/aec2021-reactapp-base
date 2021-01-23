@@ -1,9 +1,16 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
+const useStyles = makeStyles({
+  root: {
+    width: 300,
+  },
+});
 
 export default function RangeSlider() {
+  const classes = useStyles();
   const [value, setValue] = React.useState([10000, 50000]);
 
   const handleChange = (event, newValue) => {
@@ -11,22 +18,21 @@ export default function RangeSlider() {
   };
 
   function valuetext(value) {
-    return `$${value / 1000}k`;
+    return `$${Math.floor(value / 1000)}k`;
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Typography id="range-slider" gutterBottom>
         Price Range
       </Typography>
       <Slider
         value={value}
-        onChange={(handleChange)}
+        onChange={handleChange}
         valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-        min={0}
-        max={100000}
+        valueLabelFormat={valuetext}
+        min={10000}
+        max={60000}
       />
     </div>
   );
