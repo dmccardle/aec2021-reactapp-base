@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { TextField, MenuItem } from '@material-ui/core'
+import { TextField, MenuItem, Slider } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography';
+import RangeSlider from './RangeSlider'
 
 const UserForm = () => {
   const [province, setProvince] = useState('')
@@ -74,6 +76,8 @@ const UserForm = () => {
             </MenuItem>
           ))}
         </TextField>
+        <RangeSlider />
+
       </form>
     </div>
   )
