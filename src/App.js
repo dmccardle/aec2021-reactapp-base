@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import { useState } from 'react'
@@ -14,11 +13,11 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="App">
       <Button variant="contained" color="primary" onClick={fetchData} >
       Hello World
       </Button>
-      <label>{data}</label>
+      <p>{data}</p>
     </div>
   );
 }
